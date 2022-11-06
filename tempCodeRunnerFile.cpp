@@ -1,1 +1,0 @@
-cout << "cycle found: " << endl;
