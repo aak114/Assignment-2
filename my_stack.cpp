@@ -7,10 +7,31 @@ template <typename T> class my_stack{
     
     public:
     my_stack(){}
+    /*
+    Returns: true if stack empty, false otherwise
+    */
     bool empty(){return l.empty();}
+
+    /*
+    Requires: Adress of element of type T
+    Modifies: adds item to stack (to the back)
+    */
     void push(const T &item){l.push_back(item);}
+
+    /*
+    Returns: last element in stack
+    */
     T& top(){return l.back();}
+
+    /*
+    Modifies: Removes last element from stack
+    */
     void pop(){l.pop_back();}
+
+    /*
+    Requires: non empty stack of type T
+    Returns: new stack<T> of type T, with elements of this stack + elements of s in consecutive order (last item in new stack is last item in second stack)
+    */
     my_stack<T> operator+(my_stack<T> s){
         my_stack<T> s2;
         for (int i = 0; i < l.size(); i++){
