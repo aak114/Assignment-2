@@ -10,6 +10,13 @@ map <int , vector <int > > outgoing;
 
 public:
 
+ /*
+ 
+ **Requires** : const vector <int > & startPoints, const vector <int > & endPoints of equal size
+
+ **Returns** : Constructs a Graph with the given set of edges, where starts and ends represent the ordered list of edges’ start and endpoints
+
+ */
  my_graph (const vector <int > & startPoints, const vector <int > & endPoints){
    if(startPoints.size() != endPoints.size()){throw invalid_argument (" Start /end point lists differ in length ");}
 
@@ -21,10 +28,23 @@ public:
  }
 
 
+/*
+ 
+ **Requires** : int v, int w
+
+ **Modifies** : adds w to vector<int> in outgoing[v] 
+ */
  void addEdge(int v, int w){
     outgoing.at(v).push_back(w);
  }
  
+ /*
+ 
+ **Requires** : int v (that exists as key in "outgoing" map), boolean array, ptr to 
+
+ **Returns** : true if node at v has cycle
+
+ */
  bool isCyclicUtil(int v, bool visited[], bool *rs){
     if(visited[v] == false)
     {
@@ -48,6 +68,13 @@ public:
 
  
 
+ /*
+ 
+ **Requires** : int nodeID that exists in map
+
+ **Returns** : number of outgoing edges from node with nodeID
+
+ */
  int numOutgoing ( const int nodeID ) const {return adjacent ( nodeID ). size ();};
  
  const vector <int > & adjacent ( const int nodeID ) const {
@@ -57,7 +84,15 @@ public:
     }
     return i-> second ;
  };
+ 
 
+
+ /*
+ 
+ **Requires** : 
+
+ **Returns** : cycle if cycle exists in graph && true, false otherwise
+ */
  bool isCyclic(){
     // Mark all the vertices as not visited and not part of recursion
     // stack
